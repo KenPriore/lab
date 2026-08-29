@@ -2,11 +2,10 @@
 <!--
   kenpriore.ai — The Lab. Built to HANDOFF 2026-08-28 (Signal v2, console register, orange hue).
   Static, no build step, no dependencies beyond the Archivo webfont.
-  PRE-DEPLOY CHECKLIST:
-    1. resume.kenpriore.ai must exist before the footer link ships.
-    2. The gate lives at lab.kenpriore.ai (server-side hashed check in the portal's server.ts).
+  STANDING NOTES:
+    1. The gate lives at lab.kenpriore.ai (server-side hashed check in the portal's server.ts).
        Never ship a client-side gate, a password constant, or a tool URL from this repo.
-    3. Pathways Explorer is deliberately absent from the ledger (promotion HOLD).
+    2. Pathways Explorer is deliberately absent from the ledger (promotion HOLD).
 -->
 <html lang="en">
 <head>
@@ -368,7 +367,6 @@ footer li a:hover{color:var(--hue);text-decoration:none}
         <div class="kicker">On the record</div>
         <ul>
           <li><a href="https://kenpriore.com/about/">About Ken</a></li>
-          <!-- PRE-DEPLOY: resume.kenpriore.ai must exist before this ships -->
           <li><a href="https://resume.kenpriore.ai">The resume</a></li>
         </ul>
       </div>
