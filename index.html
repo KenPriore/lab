@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<!--
+  kenpriore.ai — The Lab. Built to HANDOFF 2026-08-28 (Signal v2, console register, orange hue).
+  Static, no build step, no dependencies beyond the Archivo webfont.
+  PRE-DEPLOY CHECKLIST:
+    1. resume.kenpriore.ai must exist before the footer link ships.
+    2. login.html gate is CLIENT-SIDE THEATRE. Wire the server-side hashed check before deploy.
+    3. Pathways Explorer is deliberately absent from the ledger (promotion HOLD).
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ken Priore · The Lab</title>
+<meta name="description" content="The lab side of kenpriore.ai. Interactive maps, explainers, and prototypes on law, AI, and proof.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ─── Signal v2 tokens — HANDOFF §2a, verbatim ─── */
+:root{
+  --paper:#FFFFFF; --ink:#0A0A0A; --ink-soft:#333333; --muted:#6B6B6B;
+  --line:#D9D9D9; --line-firm:var(--ink); --fill-soft:#F4F4F4;
+  --c-red:#FF0000; --c-blue:#0057B8; --c-yellow:#FFCC00;
+  --ill-slate:#4A6FA5; --ill-rose:#C76B7E; --ill-mustard:#D4A24C;
+  --ill-orange:#FF7F50; --ill-sage:#7CA982;
+  --hue:var(--ill-orange);
+  --container:1180px; --measure:720px; --inset:clamp(20px,5vw,72px);
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  --beat:480ms;
+  --ease-cut:cubic-bezier(0.2,0.7,0.2,1);
+  --ease-snap:cubic-bezier(0.2,0,0,1);
+}
+*{box-sizing:border-box;border-radius:0!important;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.container{max-width:var(--container);margin:0 auto;padding-left:var(--inset);padding-right:var(--inset)}
+a{color:var(--c-blue);text-decoration:none}
+a:hover{text-decoration:underline;text-decoration-thickness:2px}
+.num{font-variant-numeric:tabular-nums}
+svg.ic{width:18px;height:18px;flex:none;color:var(--ink);--signal:var(--c-blue)}
+
+.kicker{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+.kicker b{color:var(--ink)}
+.poster{font-size:clamp(34px,5vw,60px);font-weight:800;letter-spacing:-.02em;line-height:1.04}
+h2{font-size:clamp(22px,2.8vw,32px);font-weight:800;letter-spacing:-.02em;line-height:1.12}
+.prose{font-size:16px;color:var(--ink-soft);max-width:66ch}
+.prose+.prose{margin-top:12px}
+
+/* the one red element on the page */
+.live-dot{display:inline-block;width:9px;height:9px;background:var(--c-red);animation:tick calc(var(--beat)*2) steps(1) infinite}
+@keyframes tick{0%{opacity:1}50%{opacity:.25}100%{opacity:1}}
+
+header.mast{position:sticky;top:0;background:var(--paper);border-bottom:4px solid var(--line-firm);z-index:10}
+.mast-in{display:flex;align-items:center;justify-content:space-between;padding:14px var(--inset);max-width:var(--container);margin:0 auto;gap:16px}
+.wordmark{display:flex;align-items:center;gap:14px}
+.wm-name{font-weight:800;letter-spacing:-.01em;font-size:16px;line-height:1.1}
+.wm-sub{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+nav.top{display:flex;gap:24px;flex-wrap:wrap}
+/* canonical: nav uppercase 13px with a 2px underline; active takes the accent */
+nav.top a{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);
+  padding-bottom:3px;border-bottom:2px solid transparent;
+  transition:border-color calc(var(--beat)/2) var(--ease-snap),color calc(var(--beat)/2) var(--ease-snap)}
+nav.top a:hover,nav.top a[aria-current]{color:var(--ink);border-bottom-color:var(--hue);text-decoration:none}
+.loopmark .orbit{transform-origin:12px 12px;animation:orbit-once calc(var(--beat)*3) var(--ease-cut) 1 forwards}
+@keyframes orbit-once{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+.hero{padding:88px 0 0}
+/* hero copy runs the full measure; the group intros stay column-constrained */
+.hero .prose{max-width:none}
+.hero-rule{border:0;border-top:6px solid var(--hue);width:120px;margin:26px 0}
+.wipe{clip-path:inset(0 100% 0 0);animation:wipe calc(var(--beat)*1.5) var(--ease-cut) forwards}
+@keyframes wipe{to{clip-path:inset(0 0 0 0)}}
+
+.contents{border-top:2px solid var(--line-firm);border-bottom:2px solid var(--line-firm);margin-top:36px}
+/* the contents strip closes the hero, so section 01 opens straight off it:
+   no bottom padding, no top padding, and no second rule 136px below the first */
+#maps{padding-top:0}
+#maps .group-head{border-top:0}
+.contents ol{list-style:none;display:grid;grid-template-columns:repeat(4,1fr)}
+@media(max-width:860px){.contents ol{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.contents ol{grid-template-columns:1fr}}
+.contents li{border-right:1px solid var(--line)}
+.contents li:last-child{border-right:0}
+@media(max-width:860px){.contents li:nth-child(2n){border-right:0}}
+.contents a{display:block;padding:16px 18px;color:var(--ink);transition:background calc(var(--beat)/2) var(--ease-snap),color calc(var(--beat)/2) var(--ease-snap)}
+.contents a:hover{background:var(--ink);color:var(--paper);text-decoration:none}
+.contents a:hover .c-no{color:var(--hue)}
+.contents .c-no{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--muted)}
+.contents .c-t{font-weight:800;font-size:15px;letter-spacing:-.01em;margin-top:2px}
+.contents .c-d{font-size:12.5px;color:inherit;opacity:.7;margin-top:2px}
+
+section.group{padding:72px 0 56px}
+/* kicker spans both columns on its own row; the heading and the intro then sit
+   on the SAME grid row, so the intro starts level with the title by construction
+   rather than by a padding value that drifts as the fluid heading resizes. */
+.group-head{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:0 40px;align-items:start;border-top:2px solid var(--line-firm);padding-top:26px}
+.group-head .gh-meta{grid-column:1 / -1;margin-bottom:14px}
+@media(max-width:820px){.group-head{grid-template-columns:1fr}.group-head .prose{padding-top:16px}}
+.group-head h2{margin-top:0}
+/* optical nudge: the heading has tighter leading, so equal box tops read as the
+   intro sitting slightly high */
+.group-head .prose{padding-top:3px}
+.hue-tick{display:block;width:34px;height:6px;background:var(--hue);margin-bottom:14px}
+
+.ledger{list-style:none;margin-top:30px}
+.ledger li{display:grid;grid-template-columns:56px 34px 1fr 90px;gap:16px;align-items:center;border-bottom:1px solid var(--line);padding:16px 0}
+@media(max-width:700px){.ledger li{grid-template-columns:44px 28px 1fr}.ledger .st{grid-column:3}}
+.ledger .no{font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;border:2px solid var(--line-firm);text-align:center;padding:4px 0;transition:background calc(var(--beat)/2) var(--ease-snap),color calc(var(--beat)/2) var(--ease-snap)}
+.ledger li:hover .no{background:var(--ink);color:var(--paper)}
+.ledger .nm a{color:var(--ink);font-weight:800;font-size:17px;letter-spacing:-.01em}
+.ledger .nm a:hover{color:var(--hue);text-decoration:none}
+.ledger .nm p{font-size:13.5px;color:var(--ink-soft);margin-top:2px}
+.ledger .st{justify-self:end}
+.badge{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:3px 9px;border:1.5px solid var(--line-firm);color:var(--ink)}
+.badge--muted{border-color:var(--line);color:var(--muted)}
+
+/* one box, filled in signal blue with knockout contents. ⚠ the system says
+   colour is signal and not large fill; this is a deliberate exception for the
+   single gated panel. Alternatives: --ill-slate (softer, but that is the .com
+   property hue) or --ink (a black door, most system-native). */
+.studio{border:2px solid var(--line-firm);margin-top:30px;background:var(--c-blue);color:var(--paper);
+  padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.studio h3{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.studio .badge{border-color:var(--paper);color:var(--paper)}
+.studio-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;border:2px solid var(--line-firm);background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:12px 20px;cursor:pointer;
+  transition:background calc(var(--beat)/2) var(--ease-snap),color calc(var(--beat)/2) var(--ease-snap)}
+.btn:hover{background:var(--ink);color:var(--paper);text-decoration:none}
+.btn:hover svg.ic{color:var(--paper)}
+
+/* canonical: 54px marks, 4px rule above, 2px below, hairline dividers, no motion */
+.motifband{border-top:4px solid var(--line-firm);border-bottom:2px solid var(--line-firm);padding:24px 0;margin-top:40px;
+  display:flex;justify-content:space-between;align-items:center;gap:0;
+  color:var(--ink);--signal:var(--hue);--emphasis:var(--ink)}
+.motifband svg{width:54px;height:54px;flex:none}
+.motifband span{flex:1 1 0;display:flex;justify-content:center;border-right:1px solid var(--line)}
+.motifband span:last-child{border-right:0}
+@media(max-width:700px){.motifband span:nth-child(n+5){display:none}}
+
+footer{border-top:4px solid var(--line-firm);padding:48px 0 64px;margin-top:72px}
+.foot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
+.foot-col .kicker{margin-bottom:12px;padding-top:10px}
+.foot-col--read .kicker{border-top:4px solid var(--ill-slate)}
+.foot-col--interactive .kicker{border-top:4px solid var(--ill-orange)}
+.foot-col--record .kicker{border-top:4px solid var(--ill-mustard)}
+.foot-col--follow .kicker{border-top:4px solid var(--ill-rose)}
+footer li{list-style:none;padding:5px 0;font-size:14px}
+footer li a{color:var(--ink)}
+footer li a:hover{color:var(--hue);text-decoration:none}
+.colophon{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.colophon a{color:inherit}
+.colophon a:hover{color:var(--hue);text-decoration:none}
+
+@media(prefers-reduced-motion:reduce){
+  .live-dot,.loopmark .orbit,.wipe{animation:none}
+  .wipe{clip-path:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Signal icons + motifs, inlined (same-document refs; <use href> to an external file fails over file://) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="e-gap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="butt"><circle fill="currentColor" stroke="none" cx="5" cy="12" r="2"></circle><circle fill="currentColor" stroke="none" cx="19" cy="12" r="2"></circle><line x1="8" y1="12" x2="11" y2="12"></line><line x1="16" y1="12" x2="13" y2="12"></line></symbol>
+<symbol id="b-gate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="butt"><line x1="6" y1="4" x2="6" y2="20"></line><line x1="18" y1="4" x2="18" y2="20"></line><line stroke="var(--signal,#FF0000)" x1="6" y1="12" x2="18" y2="12"></line></symbol>
+<symbol id="e-throughput" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="butt"><circle fill="currentColor" stroke="none" cx="5" cy="12" r="2"></circle><circle fill="currentColor" stroke="none" cx="10" cy="12" r="2"></circle><circle fill="currentColor" stroke="none" cx="15" cy="12" r="2"></circle><polyline stroke="var(--signal,#FF0000)" points="18,9 21,12 18,15"></polyline></symbol>
+<symbol id="b-ledger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="butt"><rect x="4" y="4" width="16" height="16"></rect><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="14" x2="20" y2="14"></line><line x1="14" y1="4" x2="14" y2="20"></line></symbol>
+<symbol id="a-signoff" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="butt"><circle cx="12" cy="12" r="8"></circle><polyline stroke="var(--signal,#FF0000)" points="8,12 11,15 16,9"></polyline></symbol>
+<symbol id="c-clause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="butt"><path d="M9 5 L7 5 L7 19 L9 19"></path><line x1="11" y1="9" x2="17" y2="9"></line><line x1="11" y1="13" x2="17" y2="13"></line><line stroke="var(--signal,#FF0000)" x1="11" y1="17" x2="15" y2="17"></line></symbol>
+<symbol id="d-framework" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="butt"><rect x="5" y="5" width="14" height="14"></rect><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></symbol>
+<symbol id="d-blueprint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="butt"><rect x="4" y="4" width="16" height="16"></rect><polyline points="8,16 8,10 14,10 14,14 17,14"></polyline><line stroke="var(--signal,#FF0000)" x1="4" y1="8" x2="7" y2="8"></line><line stroke="var(--signal,#FF0000)" x1="20" y1="16" x2="17" y2="16"></line></symbol>
+<symbol id="e-baseline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="butt"><line x1="3" y1="14" x2="21" y2="14"></line><line x1="6" y1="14" x2="6" y2="10"></line><line x1="10" y1="14" x2="10" y2="8"></line><line x1="14" y1="14" x2="14" y2="11"></line><line x1="18" y1="14" x2="18" y2="7"></line><circle fill="var(--signal,#FF0000)" stroke="none" cx="18" cy="7" r="2"></circle></symbol>
+<symbol id="b-attest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="butt"><circle cx="12" cy="12" r="6"></circle><polyline stroke="var(--signal,#FF0000)" points="9,12 11,14 15,9.5"></polyline><line x1="12" y1="2.5" x2="12" y2="5"></line><line x1="12" y1="19" x2="12" y2="21.5"></line><line x1="2.5" y1="12" x2="5" y2="12"></line><line x1="19" y1="12" x2="21.5" y2="12"></line></symbol>
+<symbol id="u-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="butt"><line x1="4" y1="12" x2="19" y2="12"></line><polyline points="13,6 19,12 13,18"></polyline></symbol>
+<symbol id="m-loop" viewBox="0 0 100 100"><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="6"></circle><circle cx="50" cy="22" r="8" fill="var(--signal,#FF7F50)"></circle></symbol>
+<symbol id="m-sort" viewBox="0 0 100 100"><g stroke="currentColor" stroke-width="2" opacity="0.28"><line x1="30" y1="18" x2="30" y2="86"></line><line x1="50" y1="18" x2="50" y2="86"></line><line x1="70" y1="18" x2="70" y2="86"></line></g><rect x="26" y="26" width="8" height="8" fill="currentColor"></rect><rect x="46" y="26" width="8" height="8" fill="var(--signal,#FF7F50)"></rect><rect x="66" y="34" width="8" height="8" fill="var(--emphasis,#0A0A0A)"></rect><rect x="26" y="44" width="8" height="8" fill="currentColor"></rect><rect x="46" y="50" width="8" height="8" fill="currentColor"></rect></symbol>
+<symbol id="m-redline" viewBox="0 0 100 100"><g stroke="currentColor" stroke-width="5"><line x1="18" y1="28" x2="82" y2="28"></line><line x1="18" y1="44" x2="70" y2="44"></line><line x1="18" y1="60" x2="78" y2="60"></line><line x1="18" y1="76" x2="62" y2="76"></line></g><line x1="12" y1="36" x2="88" y2="36" stroke="var(--signal,#FF7F50)" stroke-width="6"></line></symbol>
+<symbol id="m-custody" viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" stroke-width="6"></rect><polyline points="34,52 46,64 68,36" fill="none" stroke="var(--signal,#FF7F50)" stroke-width="7" stroke-linecap="square"></polyline></symbol>
+<symbol id="m-agreement" viewBox="0 0 100 100"><path d="M28 16 H62 L76 30 V84 H28 Z" fill="none" stroke="currentColor" stroke-width="5"></path><path d="M62 16 V30 H76" fill="none" stroke="currentColor" stroke-width="5"></path><g stroke="currentColor" stroke-width="4"><line x1="36" y1="46" x2="68" y2="46"></line><line x1="36" y1="58" x2="68" y2="58"></line><line x1="36" y1="70" x2="56" y2="70" stroke="var(--signal,#FF7F50)"></line></g></symbol>
+<symbol id="m-cube" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width="5"><polygon points="50,18 78,34 78,66 50,82 22,66 22,34"></polygon><path d="M50 18 V50 M50 50 L78 34 M50 50 L22 34"></path></g><circle cx="50" cy="18" r="6" fill="var(--signal,#FF7F50)"></circle></symbol>
+</defs></svg>
+
+<!-- ─── MASTHEAD ─── -->
+<header class="mast">
+  <div class="mast-in">
+    <div class="wordmark">
+      <svg class="loopmark" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="8.5" fill="none" stroke="#0A0A0A" stroke-width="3"/>
+        <g class="orbit"><circle cx="12" cy="3.5" r="2.6" fill="#0057B8"/></g>
+      </svg>
+      <div>
+        <div class="wm-name">KEN PRIORE</div>
+        <div class="wm-sub">The Lab · kenpriore.ai</div>
+      </div>
+    </div>
+    <nav class="top">
+      <a href="#maps">Experiments</a>
+      <a href="login.html">Lab log in</a>
+      <a href="https://kenpriore.com">Writing</a>
+      <a href="https://kenpriore.com/about/">About</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="container">
+    <div class="kicker"><span class="live-dot"></span><b>THE LAB</b> · WORKING TOOLS · 2026</div>
+    <hr class="hero-rule">
+    <h1 class="poster wipe">Where the arguments become running code.</h1>
+    <p class="prose" style="margin-top:24px">I'm Ken Priore. I've spent 25 years as a lawyer inside technology companies, from PayPal to Grindr to Docusign, where I'm deputy general counsel. I write about what AI does to legal work, and I build to find out if I'm right. The essays live at <a href="https://kenpriore.com">kenpriore.com</a>. The builds live here. Everything below is an experiment: some finished, some running, one proving that an AI agent's work can be sealed.</p>
+
+    <div class="contents">
+      <ol>
+        <li><a href="#maps"><span class="c-no num">01</span><div class="c-t">The maps</div><div class="c-d">Where AI is landing in legal work</div></a></li>
+        <li><a href="#model"><span class="c-no num">02</span><div class="c-t">The operating model</div><div class="c-d">What an AI-run department looks like</div></a></li>
+        <li><a href="#proof"><span class="c-no num">03</span><div class="c-t">The proof lane</div><div class="c-d">How agent work gets proven</div></a></li>
+        <li><a href="#lab"><span class="c-no num">04</span><div class="c-t">Lab log in</div><div class="c-d">If you know, ya know</div></a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 01 · THE MAPS ─── -->
+<section class="group" id="maps">
+  <div class="container">
+    <div class="group-head">
+      <div class="gh-meta">
+        <span class="hue-tick"></span>
+        <div class="kicker"><b>01</b> — THE MAPS</div>
+      </div>
+      <h2>Where AI is actually landing in legal work.</h2>
+      <p class="prose">AI hits legal work unevenly. These maps show where it lands first, what protects a company when production gets cheap, and where the money is going.</p>
+    </div>
+    <ul class="ledger num">
+      <li><span class="no">01</span><svg class="ic"><use href="#e-gap"/></svg>
+        <span class="nm"><a href="https://mindthegap.kenpriore.ai">Mind the Gap</a><p>AI hits in-house legal work unevenly. The judgment gap dwarfs the process gap.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
+      <li><span class="no">02</span><svg class="ic"><use href="#b-gate"/></svg>
+        <span class="nm"><a href="https://mindthemoat.kenpriore.ai">Mind the Moat</a><p>Five durable moats of the post-production economy: trust, context, distribution, taste, liability.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
+      <li><span class="no">03</span><svg class="ic"><use href="#e-throughput"/></svg>
+        <span class="nm"><a href="https://mindthemoney.kenpriore.ai">Mind the Money</a><p>Where legal-tech funding is concentrating, and what the concentration says.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
+      <li><span class="no">04</span><svg class="ic"><use href="#b-ledger"/></svg>
+        <span class="nm"><a href="https://mindthechain.kenpriore.ai">Mind the Chain</a><p>The research companion to the Certificate of Action: the record, not the model, gets audited.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── 02 · THE OPERATING MODEL ─── -->
+<section class="group" id="model" style="padding-top:0">
+  <div class="container">
+    <div class="group-head">
+      <div class="gh-meta">
+        <span class="hue-tick"></span>
+        <div class="kicker"><b>02</b> — THE OPERATING MODEL</div>
+      </div>
+      <h2>What a legal department that runs on AI looks like.</h2>
+      <p class="prose">These map what each stage of legal work runs on, at whatever depth you have time for, and the record a department needs before a lawyer can step back.</p>
+    </div>
+    <ul class="ledger num">
+      <li><span class="no">05</span><svg class="ic"><use href="#d-framework"/></svg>
+        <span class="nm"><a href="https://ainativelaw.kenpriore.ai">The Legal Department, Rewired</a><p>The 13-stage operating model. Start here.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
+      <li><span class="no">06</span><svg class="ic"><use href="#d-blueprint"/></svg>
+        <span class="nm"><a href="https://ainativelaw.kenpriore.ai/map.html">The Working Map</a><p>Eight intelligence types, five data states, thirteen steps. For legal and product teams.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
+      <li><span class="no">07</span><svg class="ic"><use href="#e-baseline"/></svg>
+        <span class="nm"><a href="https://ainativelaw.kenpriore.ai/runs-on.html">The Executive Briefing</a><p>Four fates of legal knowledge, four daily losses, three commitments. Thirty seconds.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── 03 · THE PROOF LANE ─── -->
+<section class="group" id="proof" style="padding-top:0">
+  <div class="container">
+    <div class="group-head">
+      <div class="gh-meta">
+        <span class="hue-tick"></span>
+        <div class="kicker"><b>03</b> — THE PROOF LANE</div>
+      </div>
+      <h2>The same argument three ways: explained, peer-reviewed, running.</h2>
+      <p class="prose">It's easy to say the record matters. It's harder to get that through peer review, argue it in front of law faculty, and ship a prototype that seals what an agent did.</p>
+    </div>
+    <ul class="ledger num">
+      <li><span class="no">08</span><svg class="ic"><use href="#a-signoff"/></svg>
+        <span class="nm"><a href="https://fiduciary.kenpriore.ai">The Fiduciary-Native Product</a><p>Fast, accurate, cheap, and defensible. The interactive walkthrough of the fourth requirement.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
+      <li><span class="no">09</span><svg class="ic"><use href="#c-clause"/></svg>
+        <span class="nm"><a href="https://ai4law.kenpriore.ai">ai4law</a><p>The research home: the Certificate of Action paper (ICML 2026), the poster, the Fiduciary's Footprint.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
+      <li><span class="no">10</span><svg class="ic"><use href="#b-attest"/></svg>
+        <span class="nm"><a href="https://proof-of-execution.replit.app/">Attest</a><p>The working prototype. Tamper-evidence across a live agent pipeline, sealed as a Certificate of Action.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── 04 · LAB LOG IN ─── -->
+<section class="group" id="lab" style="padding-top:0">
+  <div class="container">
+    <div class="group-head">
+      <div class="gh-meta">
+        <span class="hue-tick"></span>
+        <div class="kicker"><b>04</b> — LAB LOG IN</div>
+      </div>
+      <h2>If you know, ya know.</h2>
+    </div>
+    <div class="studio">
+      <h3>Lab log in</h3>
+      <div class="studio-actions">
+        <span class="badge">Gated</span>
+        <a class="btn" href="login.html">Log in <svg class="ic"><use href="#u-arrow"/></svg></a>
+      </div>
+    </div>
+
+    <!-- canonical order: loop · redline · sort · custody · agreement · (loop-advanced) -->
+    <div class="motifband" aria-hidden="true">
+      <span><svg><use href="#m-loop"/></svg></span>
+      <span><svg><use href="#m-redline"/></svg></span>
+      <span><svg><use href="#m-sort"/></svg></span>
+      <span><svg><use href="#m-custody"/></svg></span>
+      <span><svg><use href="#m-agreement"/></svg></span>
+      <span><svg><use href="#m-cube"/></svg></span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col foot-col--read">
+        <div class="kicker">Read</div>
+        <ul>
+          <li><a href="https://kenpriore.com/tag/signals/">Signals</a></li>
+          <li><a href="https://kenpriore.com/tag/reflections/">Reflections</a></li>
+          <li><a href="https://kenpriore.com/tag/foundations/">Foundations</a></li>
+        </ul>
+      </div>
+      <div class="foot-col foot-col--interactive">
+        <div class="kicker">Interactive</div>
+        <ul>
+          <li><a href="#maps">The maps</a></li>
+          <li><a href="#model">The operating model</a></li>
+          <li><a href="#proof">The proof lane</a></li>
+          <li><a href="login.html">Lab log in</a></li>
+        </ul>
+      </div>
+      <div class="foot-col foot-col--record">
+        <div class="kicker">On the record</div>
+        <ul>
+          <li><a href="https://kenpriore.com/about/">About Ken</a></li>
+          <!-- PRE-DEPLOY: resume.kenpriore.ai must exist before this ships -->
+          <li><a href="https://resume.kenpriore.ai">The resume</a></li>
+        </ul>
+      </div>
+      <div class="foot-col foot-col--follow">
+        <div class="kicker">Follow</div>
+        <ul>
+          <li><a href="https://kenpriore.com">Subscribe</a></li>
+          <li><a href="https://kenpriore.com/rss/">RSS</a></li>
+          <li><a href="https://linkedin.com/in/kennethpriore">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="colophon num">
+      <span>© 2026 Ken Priore · Personal views · Not legal advice</span>
+      <span><a href="https://kenpriore.ai">kenpriore.ai</a> · <a href="https://kenpriore.com">kenpriore.com</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
