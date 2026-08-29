@@ -57,6 +57,12 @@ header.mast{position:sticky;top:0;background:var(--paper);border-bottom:4px soli
 .wm-name{font-weight:800;letter-spacing:-.01em;font-size:16px;line-height:1.1}
 .wm-sub{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 nav.top{display:flex;gap:24px;flex-wrap:wrap}
+/* canonical §3: below the breakpoint the masthead wraps and the nav becomes a
+   wrapped row under a hairline, rather than fighting the wordmark for width */
+@media(max-width:820px){
+  .mast-in{flex-direction:column;align-items:stretch;gap:0}
+  nav.top{gap:18px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+}
 /* canonical: nav uppercase 13px with a 2px underline; active takes the accent */
 nav.top a{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);
   padding-bottom:3px;border-bottom:2px solid transparent;
