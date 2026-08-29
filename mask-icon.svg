@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Safari pinned-tab mask. Silhouette ONLY: Safari masks by shape and ignores
+       fills, so there is deliberately NO background rect here (a full-bleed rect
+       would render the pinned tab as a solid square). Ring is drawn as a filled
+       annulus rather than a stroke so the shape survives the mask conversion. -->
+  <path fill="#000000" fill-rule="evenodd" d="M2.75,16 A13.25,13.25 0 1,0 29.25,16 A13.25,13.25 0 1,0 2.75,16 Z M7.25,16 A8.75,8.75 0 1,1 24.75,16 A8.75,8.75 0 1,1 7.25,16 Z"/>
+  <circle cx="16" cy="5" r="3.8" fill="#000000"/>
+</svg>
