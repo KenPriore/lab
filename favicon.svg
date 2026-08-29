@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Loop mark, scaled for favicon legibility. Ring stroke and dot are
+       proportionally heavier than the 24px masthead mark so they survive 16px. -->
+  <rect width="32" height="32" fill="#FFFFFF"/>
+  <circle cx="16" cy="16" r="11" fill="none" stroke="#0A0A0A" stroke-width="4.5"/>
+  <circle cx="16" cy="5" r="3.8" fill="#0057B8"/>
+</svg>
