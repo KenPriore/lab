@@ -4,7 +4,8 @@
   Static, no build step, no dependencies beyond the Archivo webfont.
   PRE-DEPLOY CHECKLIST:
     1. resume.kenpriore.ai must exist before the footer link ships.
-    2. login.html gate is CLIENT-SIDE THEATRE. Wire the server-side hashed check before deploy.
+    2. The gate lives at lab.kenpriore.ai (server-side hashed check in the portal's server.ts).
+       Never ship a client-side gate, a password constant, or a tool URL from this repo.
     3. Pathways Explorer is deliberately absent from the ledger (promotion HOLD).
 -->
 <html lang="en">
@@ -205,7 +206,7 @@ footer li a:hover{color:var(--hue);text-decoration:none}
     </div>
     <nav class="top">
       <a href="#maps">Experiments</a>
-      <a href="login.html">Lab log in</a>
+      <a href="https://lab.kenpriore.ai">Lab log in</a>
       <a href="https://kenpriore.com">Writing</a>
       <a href="https://kenpriore.com/about/">About</a>
     </nav>
@@ -323,7 +324,7 @@ footer li a:hover{color:var(--hue);text-decoration:none}
       <h3>Lab log in</h3>
       <div class="studio-actions">
         <span class="badge">Gated</span>
-        <a class="btn" href="login.html">Log in <svg class="ic"><use href="#u-arrow"/></svg></a>
+        <a class="btn" href="https://lab.kenpriore.ai">Log in <svg class="ic"><use href="#u-arrow"/></svg></a>
       </div>
     </div>
 
@@ -357,7 +358,7 @@ footer li a:hover{color:var(--hue);text-decoration:none}
           <li><a href="#maps">The maps</a></li>
           <li><a href="#model">The operating model</a></li>
           <li><a href="#proof">The proof lane</a></li>
-          <li><a href="login.html">Lab log in</a></li>
+          <li><a href="https://lab.kenpriore.ai">Lab log in</a></li>
         </ul>
       </div>
       <div class="foot-col foot-col--record">
