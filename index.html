@@ -188,6 +188,9 @@ footer li a:hover{color:var(--hue);text-decoration:none}
 
 /* ─── the papers · two plates at the tail of the proof lane ─── */
 .papers-head{margin-top:44px}
+/* the strip's 36px lead-in was tuned to follow hero prose; after two ink plates
+   it needs a little more air before the 2px rule */
+.papers + .contents{margin-top:44px}
 .papers{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .papers .plate{border:2px solid var(--line-firm);display:flex;flex-direction:column;min-height:440px}
 /* stacked, the 440px floor just adds dead space */
@@ -273,6 +276,58 @@ footer li a:hover{color:var(--hue);text-decoration:none}
     <hr class="hero-rule">
     <h1 class="poster wipe">I build the things I write about</h1>
     <p class="prose" style="margin-top:24px">I'm Ken Priore. I've spent 25 years as a lawyer inside technology companies, from PayPal to Grindr to Docusign, where I'm deputy general counsel. I write about what AI does to legal work, and I build to find out if I'm right. The essays live at <a href="https://kenpriore.com">kenpriore.com</a>. The builds live here. Everything below is an experiment: some finished, some running, one proving that an AI agent's work can be sealed.</p>
+
+    <!-- The peer-reviewed spine, promoted above the contents strip so it leads the
+         page rather than closing section 03. Deliberately UNNUMBERED: the 01-04 arc
+         below is a tour, and these are the thing it orbits, not a stop on it.
+         PDFs are served from papers/ in this repo, so the citable URL is
+         kenpriore.ai/papers/<slug>.pdf and does not depend on ai4law. -->
+    <div class="papers-head">
+      <div class="kicker"><b>THE PAPERS</b></div>
+    </div>
+    <div class="papers">
+      <div class="plate">
+        <div class="paper-cap">
+          <span class="rule"></span>
+          <div class="kicker">ICML 2026</div>
+          <h3 class="paper-title">Certificate of Action</h3>
+          <p class="paper-sub">A Trust Primitive for Verifiable Autonomous Legal AI Agent Workflows</p>
+        </div>
+        <div class="paper-wrap">
+          <p class="paper-body">When an autonomous agent does legal work, nothing today certifies what it did, under what authority, or whether a human reviewed it. This proposes what that record has to be.</p>
+          <ul class="paper-meta">
+            <li><span class="k">Venue</span><span class="v">AI for Law Workshop, Seoul</span></li>
+            <li><span class="k">Date</span><span class="v">July 2026</span></li>
+            <!-- PMLR 306 is the volume printed on the camera-ready footer. As of
+                 2026-08-29 proceedings.mlr.press/v306 is still a 404 — PMLR reserves
+                 volumes ahead of publication, so this is expected to go live. Ken's
+                 call to cite it now. Open question: this is a workshop paper (AI for
+                 Law, first edition), and workshop papers are often non-archival and
+                 absent from the main conference volume. Recheck v306 once published;
+                 if the workshop is not in it, this line needs to change. -->
+            <li><span class="k">Extent</span><span class="v">10 pages · PMLR 306</span></li>
+          </ul>
+          <div class="paper-foot"><a class="btn" href="papers/certificate-of-action.pdf">Read the paper <svg class="ic"><use href="#u-arrow"/></svg></a></div>
+        </div>
+      </div>
+      <div class="plate">
+        <div class="paper-cap">
+          <span class="rule"></span>
+          <div class="kicker">NYU Law 2026</div>
+          <h3 class="paper-title">The Fiduciary's Footprint</h3>
+          <p class="paper-sub">How Legal AI Agents Can Prove They Were Loyal</p>
+        </div>
+        <div class="paper-wrap">
+          <p class="paper-body">Fiduciary duty doesn't disappear when an AI agent makes the decision. It just becomes harder to prove. Written for the Information Law Institute's workshop on fiduciary duties and AI.</p>
+          <ul class="paper-meta">
+            <li><span class="k">Venue</span><span class="v">Information Law Institute, New York</span></li>
+            <li><span class="k">Date</span><span class="v">June 2026</span></li>
+            <li><span class="k">Extent</span><span class="v">14 pages · Discussion draft</span></li>
+          </ul>
+          <div class="paper-foot"><a class="btn" href="papers/fiduciarys-footprint.pdf">Read the paper <svg class="ic"><use href="#u-arrow"/></svg></a></div>
+        </div>
+      </div>
+    </div>
 
     <div class="contents">
       <ol>
@@ -363,55 +418,6 @@ footer li a:hover{color:var(--hue);text-decoration:none}
         <span class="nm"><a href="https://proof-of-execution.replit.app/">Attest</a><p>The working prototype. Tamper-evidence across a live agent pipeline, sealed as a Certificate of Action.</p></span>
         <span class="st"><a class="badge badge--demo" href="https://youtu.be/YMpd1zGAksk?t=63" target="_blank" rel="noopener">Demo</a><span class="badge">Live</span></span></li>
     </ul>
-
-    <!-- the peer-reviewed leg. PDFs are served from papers/ in this repo, so the
-         citable URL is kenpriore.ai/papers/<slug>.pdf and does not depend on ai4law. -->
-    <div class="papers-head">
-      <div class="kicker"><b>THE PAPERS</b></div>
-    </div>
-    <div class="papers">
-      <div class="plate">
-        <div class="paper-cap">
-          <span class="rule"></span>
-          <div class="kicker">ICML 2026</div>
-          <h3 class="paper-title">Certificate of Action</h3>
-          <p class="paper-sub">A Trust Primitive for Verifiable Autonomous Legal AI Agent Workflows</p>
-        </div>
-        <div class="paper-wrap">
-          <p class="paper-body">When an autonomous agent does legal work, nothing today certifies what it did, under what authority, or whether a human reviewed it. This proposes what that record has to be.</p>
-          <ul class="paper-meta">
-            <li><span class="k">Venue</span><span class="v">AI for Law Workshop, Seoul</span></li>
-            <li><span class="k">Date</span><span class="v">July 2026</span></li>
-            <!-- PMLR 306 is the volume printed on the camera-ready footer. As of
-                 2026-08-29 proceedings.mlr.press/v306 is still a 404 — PMLR reserves
-                 volumes ahead of publication, so this is expected to go live. Ken's
-                 call to cite it now. Open question: this is a workshop paper (AI for
-                 Law, first edition), and workshop papers are often non-archival and
-                 absent from the main conference volume. Recheck v306 once published;
-                 if the workshop is not in it, this line needs to change. -->
-            <li><span class="k">Extent</span><span class="v">10 pages · PMLR 306</span></li>
-          </ul>
-          <div class="paper-foot"><a class="btn" href="papers/certificate-of-action.pdf">Read the paper <svg class="ic"><use href="#u-arrow"/></svg></a></div>
-        </div>
-      </div>
-      <div class="plate">
-        <div class="paper-cap">
-          <span class="rule"></span>
-          <div class="kicker">NYU Law 2026</div>
-          <h3 class="paper-title">The Fiduciary's Footprint</h3>
-          <p class="paper-sub">How Legal AI Agents Can Prove They Were Loyal</p>
-        </div>
-        <div class="paper-wrap">
-          <p class="paper-body">Fiduciary duty doesn't disappear when an AI agent makes the decision. It just becomes harder to prove. Written for the Information Law Institute's workshop on fiduciary duties and AI.</p>
-          <ul class="paper-meta">
-            <li><span class="k">Venue</span><span class="v">Information Law Institute, New York</span></li>
-            <li><span class="k">Date</span><span class="v">June 2026</span></li>
-            <li><span class="k">Extent</span><span class="v">14 pages · Discussion draft</span></li>
-          </ul>
-          <div class="paper-foot"><a class="btn" href="papers/fiduciarys-footprint.pdf">Read the paper <svg class="ic"><use href="#u-arrow"/></svg></a></div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
