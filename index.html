@@ -122,16 +122,23 @@ section.group{padding:72px 0 56px}
 .hue-tick{display:block;width:34px;height:6px;background:var(--hue);margin-bottom:14px}
 
 .ledger{list-style:none;margin-top:30px}
-.ledger li{display:grid;grid-template-columns:56px 34px 1fr 90px;gap:16px;align-items:center;border-bottom:1px solid var(--line);padding:16px 0}
+/* col 4 is 150px, not 90px, so a row can carry a second chip beside its status
+   without the single-chip rows shifting — they stay right-aligned to the same edge */
+.ledger li{display:grid;grid-template-columns:56px 34px 1fr 150px;gap:16px;align-items:center;border-bottom:1px solid var(--line);padding:16px 0}
 @media(max-width:700px){.ledger li{grid-template-columns:44px 28px 1fr}.ledger .st{grid-column:3}}
 .ledger .no{font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;border:2px solid var(--line-firm);text-align:center;padding:4px 0;transition:background calc(var(--beat)/2) var(--ease-snap),color calc(var(--beat)/2) var(--ease-snap)}
 .ledger li:hover .no{background:var(--ink);color:var(--paper)}
 .ledger .nm a{color:var(--ink);font-weight:800;font-size:17px;letter-spacing:-.01em}
 .ledger .nm a:hover{color:var(--hue);text-decoration:none}
 .ledger .nm p{font-size:13.5px;color:var(--ink-soft);margin-top:2px}
-.ledger .st{justify-self:end}
+.ledger .st{justify-self:end;display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
 .badge{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:3px 9px;border:1.5px solid var(--line-firm);color:var(--ink)}
 .badge--muted{border-color:var(--line);color:var(--muted)}
+/* a link, not a status. Blue is the system's link/emphasis colour, and the
+   invert-on-hover matches every other interactive element on the page. */
+.badge--demo{border-color:var(--c-blue);color:var(--c-blue);text-decoration:none;
+  transition:background calc(var(--beat)/2) var(--ease-snap),color calc(var(--beat)/2) var(--ease-snap)}
+.badge--demo:hover{background:var(--c-blue);color:var(--paper);text-decoration:none}
 /* not yet shipped: no link, muted title, the badge carries the state, and the
    number box stays put on hover since there is nothing to click */
 .ledger li.pending .nm .t{font-weight:800;font-size:17px;letter-spacing:-.01em;color:var(--muted)}
@@ -352,7 +359,7 @@ footer li a:hover{color:var(--hue);text-decoration:none}
         <span class="st"><span class="badge">Live</span></span></li>
       <li><span class="no">11</span><svg class="ic"><use href="#b-attest"/></svg>
         <span class="nm"><a href="https://proof-of-execution.replit.app/">Attest</a><p>The working prototype. Tamper-evidence across a live agent pipeline, sealed as a Certificate of Action.</p></span>
-        <span class="st"><span class="badge">Live</span></span></li>
+        <span class="st"><a class="badge badge--demo" href="https://youtu.be/YMpd1zGAksk?t=63">Demo</a><span class="badge">Live</span></span></li>
     </ul>
 
     <!-- the peer-reviewed leg. PDFs are served from papers/ in this repo, so the
