@@ -122,9 +122,11 @@ section.group{padding:72px 0 56px}
 .hue-tick{display:block;width:34px;height:6px;background:var(--hue);margin-bottom:14px}
 
 .ledger{list-style:none;margin-top:30px}
-/* col 4 is 150px, not 90px, so a row can carry a second chip beside its status
-   without the single-chip rows shifting — they stay right-aligned to the same edge */
-.ledger li{display:grid;grid-template-columns:56px 34px 1fr 150px;gap:16px;align-items:center;border-bottom:1px solid var(--line);padding:16px 0}
+/* col 4 is `auto`, not a fixed width. Every li is its own grid, so the status
+   column sizes to that row's own chips: one-chip rows give the description MORE
+   room than the old 90px, and the two-chip row takes only what it needs. A fixed
+   150px made three descriptions wrap at ~900px to serve a single row. */
+.ledger li{display:grid;grid-template-columns:56px 34px 1fr auto;gap:16px;align-items:center;border-bottom:1px solid var(--line);padding:16px 0}
 @media(max-width:700px){.ledger li{grid-template-columns:44px 28px 1fr}.ledger .st{grid-column:3}}
 .ledger .no{font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;border:2px solid var(--line-firm);text-align:center;padding:4px 0;transition:background calc(var(--beat)/2) var(--ease-snap),color calc(var(--beat)/2) var(--ease-snap)}
 .ledger li:hover .no{background:var(--ink);color:var(--paper)}
