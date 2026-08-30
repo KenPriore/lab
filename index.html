@@ -44,7 +44,13 @@
   --ease-snap:cubic-bezier(0.2,0,0,1);
 }
 *{box-sizing:border-box;border-radius:0!important;margin:0;padding:0}
-html{scroll-behavior:smooth}
+/* The masthead is sticky, so an anchor jump would land the target UNDER it —
+   every section kicker and headline was hidden behind 138px of header on mobile,
+   and three of the four anchors are footer links. scroll-padding-top reserves
+   the header's height plus a little air. ainativelaw already does this; this
+   page was the one missing it. */
+html{scroll-behavior:smooth;scroll-padding-top:112px}
+@media(max-width:880px){html{scroll-padding-top:190px}}
 body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
 .container{max-width:var(--container);margin:0 auto;padding-left:var(--inset);padding-right:var(--inset)}
 a{color:var(--c-blue);text-decoration:none}
