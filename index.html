@@ -191,8 +191,13 @@ footer li a:hover{color:var(--hue);text-decoration:none}
 .paper-title{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.14;margin-top:14px}
 .paper-sub{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.45}
 .paper-body{font-size:14.5px;color:var(--ink-soft);margin-top:16px;line-height:1.55}
-.paper-meta{list-style:none;margin-top:18px;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
-.paper-meta li{padding:6px 0;border-top:1px solid var(--line)}
+/* docket grammar: one label column, same three rows on every plate, so the two
+   cards read as one schema rather than two lists. Labels stay sentence case —
+   kickers are the only uppercase in the system. */
+.paper-meta{list-style:none;margin-top:18px;font-size:12.5px;font-variant-numeric:tabular-nums}
+.paper-meta li{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:7px 0;border-top:1px solid var(--line)}
+.paper-meta .k{color:var(--muted)}
+.paper-meta .v{color:var(--ink-soft)}
 /* pinned to the bottom so both plates align however long the prose runs */
 .paper-foot{margin-top:auto;padding-top:22px}
 
@@ -355,15 +360,16 @@ footer li a:hover{color:var(--hue);text-decoration:none}
       <div class="plate">
         <div class="paper-cap">
           <span class="rule"></span>
-          <div class="kicker">ICML 2026 · Seoul · July</div>
+          <div class="kicker">ICML 2026</div>
           <h3 class="paper-title">Certificate of Action</h3>
           <p class="paper-sub">A Trust Primitive for Verifiable Autonomous Legal AI Agent Workflows</p>
         </div>
         <div class="paper-wrap">
           <p class="paper-body">When an autonomous agent does legal work, nothing today certifies what it did, under what authority, or whether a human reviewed it. This proposes what that record has to be.</p>
           <ul class="paper-meta">
-            <li>AI for Law Workshop · first edition</li>
-            <li>10 pages · PMLR 306</li>
+            <li><span class="k">Venue</span><span class="v">AI for Law Workshop, Seoul</span></li>
+            <li><span class="k">Date</span><span class="v">July 2026</span></li>
+            <li><span class="k">Extent</span><span class="v">10 pages · PMLR 306</span></li>
           </ul>
           <div class="paper-foot"><a class="btn" href="papers/certificate-of-action.pdf">Read the paper <svg class="ic"><use href="#u-arrow"/></svg></a></div>
         </div>
@@ -371,15 +377,16 @@ footer li a:hover{color:var(--hue);text-decoration:none}
       <div class="plate">
         <div class="paper-cap">
           <span class="rule"></span>
-          <div class="kicker">NYU Law · June 2026</div>
+          <div class="kicker">NYU Law 2026</div>
           <h3 class="paper-title">The Fiduciary's Footprint</h3>
           <p class="paper-sub">How Legal AI Agents Can Prove They Were Loyal</p>
         </div>
         <div class="paper-wrap">
           <p class="paper-body">Fiduciary duty doesn't disappear when an AI agent makes the decision. It just becomes harder to prove. Written for the Information Law Institute's workshop on fiduciary duties and AI.</p>
           <ul class="paper-meta">
-            <li>Information Law Institute · GliaNet Alliance</li>
-            <li>14 pages · Discussion draft</li>
+            <li><span class="k">Venue</span><span class="v">Information Law Institute, New York</span></li>
+            <li><span class="k">Date</span><span class="v">June 2026</span></li>
+            <li><span class="k">Extent</span><span class="v">14 pages · Discussion draft</span></li>
           </ul>
           <div class="paper-foot"><a class="btn" href="papers/fiduciarys-footprint.pdf">Read the paper <svg class="ic"><use href="#u-arrow"/></svg></a></div>
         </div>
