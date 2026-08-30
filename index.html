@@ -72,7 +72,9 @@ header.mast{position:sticky;top:0;background:var(--paper);border-bottom:4px soli
 .wordmark{display:flex;align-items:center;gap:14px;color:var(--ink);text-decoration:none}
 .wordmark:hover{text-decoration:none}
 .wm-name{font-weight:800;letter-spacing:-.02em;font-size:20px;line-height:1.5}
-.wm-sub{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+/* explicit 1.5 — this page's body runs 1.55, and inheriting it made the sub-line
+   0.55px taller, which was the whole of the header's 0.547px drift from .com */
+.wm-sub{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:2px;line-height:1.5}
 nav.top{display:flex;gap:28px;flex-wrap:wrap}
 /* canonical §3: below the breakpoint the masthead wraps and the nav becomes a
    wrapped row under a hairline, rather than fighting the wordmark for width */
