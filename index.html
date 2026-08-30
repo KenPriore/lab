@@ -64,14 +64,21 @@ h2{font-size:clamp(22px,2.8vw,32px);font-weight:800;letter-spacing:-.02em;line-h
 @keyframes tick{0%{opacity:1}50%{opacity:.25}100%{opacity:1}}
 
 header.mast{position:sticky;top:0;background:var(--paper);border-bottom:4px solid var(--line-firm);z-index:10}
-.mast-in{display:flex;align-items:center;justify-content:space-between;padding:14px var(--inset);max-width:var(--container);margin:0 auto;gap:16px}
-.wordmark{display:flex;align-items:center;gap:14px}
-.wm-name{font-weight:800;letter-spacing:-.01em;font-size:16px;line-height:1.1}
-.wm-sub{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
-nav.top{display:flex;gap:24px;flex-wrap:wrap}
+/* Masthead geometry is the family spec, shared with kenpriore.com and the resume:
+   18px inner padding, 34px mark, 20px/-0.02em wordmark, 11px sub-line 2px beneath.
+   Header resolves to 88.5px on every property so page content starts at the same
+   y-coordinate when a reader crosses between them. */
+.mast-in{display:flex;align-items:center;justify-content:space-between;padding:18px var(--inset);max-width:var(--container);margin:0 auto;gap:16px}
+.wordmark{display:flex;align-items:center;gap:14px;color:var(--ink);text-decoration:none}
+.wordmark:hover{text-decoration:none}
+.wm-name{font-weight:800;letter-spacing:-.02em;font-size:20px;line-height:1.5}
+.wm-sub{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+nav.top{display:flex;gap:28px;flex-wrap:wrap}
 /* canonical §3: below the breakpoint the masthead wraps and the nav becomes a
    wrapped row under a hairline, rather than fighting the wordmark for width */
-@media(max-width:820px){
+/* 880px, matching .com and the resume. Was 820px, which put the family's
+   masthead reflow at two different widths. */
+@media(max-width:880px){
   .mast-in{flex-direction:column;align-items:stretch;gap:0}
   nav.top{gap:18px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
 }
@@ -79,8 +86,13 @@ nav.top{display:flex;gap:24px;flex-wrap:wrap}
 nav.top a{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);
   padding-bottom:3px;border-bottom:2px solid transparent;
   transition:border-color calc(var(--beat)/2) var(--ease-snap),color calc(var(--beat)/2) var(--ease-snap)}
-nav.top a:hover,nav.top a[aria-current]{color:var(--ink);border-bottom-color:var(--hue);text-decoration:none}
-.loopmark .orbit{transform-origin:12px 12px;animation:orbit-once calc(var(--beat)*3) var(--ease-cut) 1 forwards}
+/* hover is ink, current page is blue — the system rule, and what .com and the
+   resume already do. Keeping them one rule made the active state invisible. */
+nav.top a:hover{color:var(--ink);border-bottom-color:var(--ink);text-decoration:none}
+nav.top a[aria-current]{color:var(--ink);border-bottom-color:var(--c-blue);text-decoration:none}
+/* wait one beat, then turn for four. Matches kenpriore.com's mark, with its
+   off-grid 400ms delay snapped to a beat. */
+.loopmark .orbit{transform-origin:17px 17px;animation:orbit-once calc(var(--beat)*4) var(--ease-cut) var(--beat) 1 forwards}
 @keyframes orbit-once{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
 .hero{padding:88px 0 0}
@@ -249,16 +261,16 @@ footer li a:hover{color:var(--hue);text-decoration:none}
 <!-- ─── MASTHEAD ─── -->
 <header class="mast">
   <div class="mast-in">
-    <div class="wordmark">
-      <svg class="loopmark" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="12" cy="12" r="8.5" fill="none" stroke="#0A0A0A" stroke-width="3"/>
-        <g class="orbit"><circle cx="12" cy="3.5" r="2.6" fill="#0057B8"/></g>
+    <a class="wordmark" href="/">
+      <svg class="loopmark" width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <circle cx="17" cy="17" r="12" fill="none" stroke="#0A0A0A" stroke-width="3"/>
+        <g class="orbit"><circle cx="17" cy="5" r="3.4" fill="#0057B8"/></g>
       </svg>
       <div>
         <div class="wm-name">KEN PRIORE</div>
         <div class="wm-sub">The Lab · kenpriore.ai</div>
       </div>
-    </div>
+    </a>
     <nav class="top">
       <a href="#maps">Experiments</a>
       <a href="https://kenpriore.com">Writing</a>
