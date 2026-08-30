@@ -176,10 +176,18 @@ footer li a:hover{color:var(--hue);text-decoration:none}
 /* ─── the papers · two plates at the tail of the proof lane ─── */
 .papers-head{margin-top:44px}
 .papers{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.papers .plate{border:2px solid var(--line-firm);padding:30px 28px 28px;display:flex;flex-direction:column;min-height:440px}
-.papers .rule{display:block;width:64px;height:6px;background:var(--hue);margin-bottom:20px}
+.papers .plate{border:2px solid var(--line-firm);display:flex;flex-direction:column;min-height:440px}
 /* stacked, the 440px floor just adds dead space */
 @media(max-width:820px){.papers{grid-template-columns:1fr}.papers .plate{min-height:0}}
+/* ink header, knockout contents. The rgba values are TEXT colour on an ink
+   field, not tinted fills — solid --muted would fail contrast on black. */
+.paper-cap{background:var(--ink);color:var(--paper);padding:24px 26px 26px}
+.paper-cap .kicker{color:rgba(255,255,255,.62)}
+.paper-cap .kicker b{color:var(--paper)}
+.paper-cap .paper-sub{color:rgba(255,255,255,.66)}
+.paper-cap .rule{display:block;width:64px;height:6px;background:var(--hue);margin-bottom:18px}
+.paper-wrap{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
+.paper-wrap .paper-body{margin-top:0}
 .paper-title{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.14;margin-top:14px}
 .paper-sub{font-size:13.5px;color:var(--muted);margin-top:6px;line-height:1.45}
 .paper-body{font-size:14.5px;color:var(--ink-soft);margin-top:16px;line-height:1.55}
@@ -323,7 +331,7 @@ footer li a:hover{color:var(--hue);text-decoration:none}
         <span class="hue-tick"></span>
         <div class="kicker"><b>03</b> — THE PROOF LANE</div>
       </div>
-      <h2>The same argument three ways: explained, peer-reviewed, running.</h2>
+      <h2>Proving what happened is the job now.</h2>
       <p class="prose">It's easy to say the record matters. It's harder to get that through peer review, argue it in front of law faculty, and ship a prototype that seals what an agent did.</p>
     </div>
     <ul class="ledger num">
@@ -345,28 +353,36 @@ footer li a:hover{color:var(--hue);text-decoration:none}
     </div>
     <div class="papers">
       <div class="plate">
-        <span class="rule"></span>
-        <div class="kicker">ICML 2026 · Seoul · July</div>
-        <h3 class="paper-title">Certificate of Action</h3>
-        <p class="paper-sub">A Trust Primitive for Verifiable Autonomous Legal AI Agent Workflows</p>
-        <p class="paper-body">When an autonomous agent does legal work, nothing today certifies what it did, under what authority, or whether a human reviewed it. This proposes what that record has to be.</p>
-        <ul class="paper-meta">
-          <li>AI for Law Workshop · first edition</li>
-          <li>10 pages · PMLR 306</li>
-        </ul>
-        <div class="paper-foot"><a class="btn" href="papers/certificate-of-action.pdf">Read the paper <svg class="ic"><use href="#u-arrow"/></svg></a></div>
+        <div class="paper-cap">
+          <span class="rule"></span>
+          <div class="kicker">ICML 2026 · Seoul · July</div>
+          <h3 class="paper-title">Certificate of Action</h3>
+          <p class="paper-sub">A Trust Primitive for Verifiable Autonomous Legal AI Agent Workflows</p>
+        </div>
+        <div class="paper-wrap">
+          <p class="paper-body">When an autonomous agent does legal work, nothing today certifies what it did, under what authority, or whether a human reviewed it. This proposes what that record has to be.</p>
+          <ul class="paper-meta">
+            <li>AI for Law Workshop · first edition</li>
+            <li>10 pages · PMLR 306</li>
+          </ul>
+          <div class="paper-foot"><a class="btn" href="papers/certificate-of-action.pdf">Read the paper <svg class="ic"><use href="#u-arrow"/></svg></a></div>
+        </div>
       </div>
       <div class="plate">
-        <span class="rule"></span>
-        <div class="kicker">NYU Law · June 2026</div>
-        <h3 class="paper-title">The Fiduciary's Footprint</h3>
-        <p class="paper-sub">How Legal AI Agents Can Prove They Were Loyal</p>
-        <p class="paper-body">Fiduciary duty doesn't disappear when an AI agent makes the decision. It just becomes harder to prove. Written for the Information Law Institute's workshop on fiduciary duties and AI.</p>
-        <ul class="paper-meta">
-          <li>Information Law Institute · GliaNet Alliance</li>
-          <li>14 pages · Discussion draft</li>
-        </ul>
-        <div class="paper-foot"><a class="btn" href="papers/fiduciarys-footprint.pdf">Read the paper <svg class="ic"><use href="#u-arrow"/></svg></a></div>
+        <div class="paper-cap">
+          <span class="rule"></span>
+          <div class="kicker">NYU Law · June 2026</div>
+          <h3 class="paper-title">The Fiduciary's Footprint</h3>
+          <p class="paper-sub">How Legal AI Agents Can Prove They Were Loyal</p>
+        </div>
+        <div class="paper-wrap">
+          <p class="paper-body">Fiduciary duty doesn't disappear when an AI agent makes the decision. It just becomes harder to prove. Written for the Information Law Institute's workshop on fiduciary duties and AI.</p>
+          <ul class="paper-meta">
+            <li>Information Law Institute · GliaNet Alliance</li>
+            <li>14 pages · Discussion draft</li>
+          </ul>
+          <div class="paper-foot"><a class="btn" href="papers/fiduciarys-footprint.pdf">Read the paper <svg class="ic"><use href="#u-arrow"/></svg></a></div>
+        </div>
       </div>
     </div>
   </div>
