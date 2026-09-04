@@ -204,18 +204,21 @@ section.group{padding:72px 0 56px}
 .studio h3{position:absolute;top:24px;left:24px;margin:0;font-size:19px;font-weight:800;letter-spacing:-.01em}
 /* the button sits over the video right where the finger points */
 .studio-actions{position:absolute;top:19%;left:57%;display:flex;align-items:center;gap:14px;flex-wrap:wrap;pointer-events:auto}
-/* small operational button in the page's orange, scaled to the illustration,
-   that presses on :active */
-.studio .studio-btn{padding:9px 20px;font-size:11px;letter-spacing:.14em;background:var(--ill-orange);border-color:var(--ink);color:var(--ink);box-shadow:4px 4px 0 rgba(10,10,10,.32)}
-.studio .studio-btn:hover{background:var(--ink);color:var(--paper);box-shadow:2px 2px 0 rgba(10,10,10,.32)}
-.studio .studio-btn:active{transform:translateY(2px);box-shadow:1px 1px 0 rgba(10,10,10,.32)}
+/* the login control is the site's loop mark (ink ring, orange dot at 12 o'clock),
+   icon-only, sitting at the android's fingertip. The dot orbits once on hover, and
+   also on focus and tap — touch has no hover, so a tap gives the same beat. */
+.loginmark{display:inline-flex;padding:8px;color:var(--ink);line-height:0;pointer-events:auto}
+.loginmark svg{width:54px;height:54px;display:block}
+.loginmark .orbit{transform-box:view-box;transform-origin:17px 17px}
+.loginmark:hover .orbit,.loginmark:focus-visible .orbit,.loginmark:active .orbit{animation:orbit-once calc(var(--beat)*2) var(--ease-cut) 1}
+.loginmark:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+@media(prefers-reduced-motion:reduce){.loginmark:hover .orbit,.loginmark:focus-visible .orbit,.loginmark:active .orbit{animation:none}}
 @media(prefers-reduced-motion:reduce){
   .studio video.studio-bg{display:none}
   .studio img.studio-bg.still{display:block}
 }
 @media(max-width:640px){
   .studio{min-height:340px}
-  .studio-actions{top:auto;bottom:18px;left:50%;transform:translateX(-50%)}
 }
 .btn{display:inline-flex;align-items:center;gap:10px;border:2px solid var(--line-firm);background:var(--paper);color:var(--ink);
   font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:12px 20px;cursor:pointer;
@@ -524,7 +527,12 @@ footer li a:hover{color:var(--hue);text-decoration:none}
       <img class="studio-bg still" src="media/android-perch-still.png" alt="A faceless android in a suit sits on a ledge and points toward the log-in button.">
       <div class="studio-inner">
         <div class="studio-actions">
-          <a class="btn studio-btn" href="https://lab.kenpriore.ai">Log in</a>
+          <a class="loginmark" href="https://lab.kenpriore.ai" aria-label="Lab log in">
+            <svg width="54" height="54" viewBox="0 0 34 34" aria-hidden="true">
+              <circle cx="17" cy="17" r="12" fill="none" stroke="currentColor" stroke-width="3"></circle>
+              <g class="orbit"><circle cx="17" cy="5" r="3.4" fill="var(--ill-orange)"></circle></g>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
