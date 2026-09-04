@@ -194,10 +194,29 @@ section.group{padding:72px 0 56px}
    colour is signal and not large fill; this is a deliberate exception for the
    single gated panel. Alternatives: --ill-slate (softer, but that is the .com
    property hue) or --ink (a black door, most system-native). */
-.studio{border:2px solid var(--line-firm);margin-top:30px;background:var(--c-blue);color:var(--paper);
-  padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.studio h3{font-size:19px;font-weight:800;letter-spacing:-.01em}
-.studio-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+/* the login panel is the perched-android loop. object-fit:cover fills the panel
+   edge-to-edge so the clip's own blue is the whole field — no letterbox, no seam.
+   The bg colour is the clip's blue as a fallback only. */
+.studio{position:relative;overflow:hidden;border:2px solid var(--line-firm);margin-top:30px;background:#2171AD;color:var(--paper);min-height:480px}
+.studio .studio-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;pointer-events:none}
+.studio img.studio-bg.still{display:none}
+.studio-inner{position:absolute;inset:0;z-index:1;padding:24px;pointer-events:none}
+.studio h3{position:absolute;top:24px;left:24px;margin:0;font-size:19px;font-weight:800;letter-spacing:-.01em}
+/* the button sits over the video right where the finger points */
+.studio-actions{position:absolute;top:19%;left:57%;display:flex;align-items:center;gap:14px;flex-wrap:wrap;pointer-events:auto}
+/* small operational button in the page's orange, scaled to the illustration,
+   that presses on :active */
+.studio .studio-btn{padding:9px 20px;font-size:11px;letter-spacing:.14em;background:var(--ill-orange);border-color:var(--ink);color:var(--ink);box-shadow:4px 4px 0 rgba(10,10,10,.32)}
+.studio .studio-btn:hover{background:var(--ink);color:var(--paper);box-shadow:2px 2px 0 rgba(10,10,10,.32)}
+.studio .studio-btn:active{transform:translateY(2px);box-shadow:1px 1px 0 rgba(10,10,10,.32)}
+@media(prefers-reduced-motion:reduce){
+  .studio video.studio-bg{display:none}
+  .studio img.studio-bg.still{display:block}
+}
+@media(max-width:640px){
+  .studio{min-height:340px}
+  .studio-actions{top:auto;bottom:18px;left:50%;transform:translateX(-50%)}
+}
 .btn{display:inline-flex;align-items:center;gap:10px;border:2px solid var(--line-firm);background:var(--paper);color:var(--ink);
   font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:12px 20px;cursor:pointer;
   transition:background calc(var(--beat)/2) var(--ease-snap),color calc(var(--beat)/2) var(--ease-snap)}
@@ -495,12 +514,18 @@ footer li a:hover{color:var(--hue);text-decoration:none}
         <span class="hue-tick"></span>
         <div class="kicker"><b>04</b> — LAB LOG IN</div>
       </div>
-      <h2>If you know, ya know</h2>
     </div>
     <div class="studio">
-      <h3>Lab log in</h3>
-      <div class="studio-actions">
-        <a class="btn" href="https://lab.kenpriore.ai">Log in <svg class="ic"><use href="#u-arrow"/></svg></a>
+      <video class="studio-bg" autoplay muted loop playsinline preload="auto" poster="media/android-perch-poster.png"
+             aria-label="A faceless android in a suit sits on a ledge, legs dangling, and points toward the log-in button.">
+        <source src="media/android-perch.webm" type="video/webm">
+        <source src="media/android-perch.mp4" type="video/mp4">
+      </video>
+      <img class="studio-bg still" src="media/android-perch-still.png" alt="A faceless android in a suit sits on a ledge and points toward the log-in button.">
+      <div class="studio-inner">
+        <div class="studio-actions">
+          <a class="btn studio-btn" href="https://lab.kenpriore.ai">Log in</a>
+        </div>
       </div>
     </div>
 
