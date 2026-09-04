@@ -106,6 +106,30 @@ nav.top a[aria-current]{color:var(--ink);border-bottom-color:var(--c-blue);text-
 .hero{padding:88px 0 0}
 /* hero copy runs the full measure; the group intros stay column-constrained */
 .hero .prose{max-width:none}
+/* hero stage — the ink loop plays as a backdrop on pure white (no border, no fill,
+   no shadow), and the title sits in front of it, so the android appears to walk
+   BEHIND the words. Loop is seam-clean (opens/closes on an empty white frame). */
+/* full-width ink loop as the backdrop; text sits over the left area, clear of the
+   figure. Kicker + rule + title at the top-left; the lede drops to the lower-left
+   at the android's feet, compact and narrow so it clears the figure at rest. */
+.hero-stage{position:relative;max-width:var(--container);margin:0 auto 10px}
+.hero-stage .hero-bg{display:block;width:100%;height:auto}
+.hero-stage img.hero-bg.still{display:none}
+.hero-fg-top{position:absolute;left:0;top:4%;width:44%;z-index:2}
+.hero-fg-top .hero-rule{margin:14px 0 0}
+.hero-fg-top .poster{margin-top:20px}
+.hero-lede{position:absolute;left:0;bottom:8%;width:37%;margin:0;z-index:2;font-size:15px;line-height:1.45}
+@media(prefers-reduced-motion:reduce){
+  .hero-stage video.hero-bg{display:none}
+  .hero-stage img.hero-bg.still{display:block}
+}
+/* narrow: drop the overlay, stack in normal flow — video, title, then lede */
+@media(max-width:820px){
+  .hero-fg-top,.hero-lede{position:static;width:auto;margin:0}
+  .hero-fg-top{margin-top:20px}
+  .hero-lede{margin-top:16px;font-size:16px}
+  .hero-stage{margin-bottom:0}
+}
 .hero-rule{border:0;border-top:6px solid var(--hue);width:120px;margin:26px 0}
 .wipe{clip-path:inset(0 100% 0 0);animation:wipe calc(var(--beat)*1.5) var(--ease-cut) forwards}
 @keyframes wipe{to{clip-path:inset(0 0 0 0)}}
@@ -296,10 +320,20 @@ footer li a:hover{color:var(--hue);text-decoration:none}
 <!-- ─── HERO ─── -->
 <section class="hero">
   <div class="container">
-    <div class="kicker"><span class="live-dot"></span><b>THE LAB</b> · WORKING TOOLS · 2026</div>
-    <hr class="hero-rule">
-    <h1 class="poster wipe">I build what I write about</h1>
-    <p class="prose" style="margin-top:24px">I'm Ken Priore, a lawyer inside technology companies for more than two decades. I write about what AI does to legal work, and this is where I find out whether I'm right. The essays are at <a href="https://kenpriore.com">kenpriore.com</a>. The papers and the prototypes are here.</p>
+    <div class="hero-stage">
+      <video class="hero-bg" autoplay muted loop playsinline preload="auto" poster="media/android-poster.png"
+             aria-label="A faceless android in a suit walks in, catches a document, and signs it — a red mark ignites as it acts — then walks on.">
+        <source src="media/android-sign.webm" type="video/webm">
+        <source src="media/android-sign.mp4" type="video/mp4">
+      </video>
+      <img class="hero-bg still" src="media/android-still.png" alt="A faceless android in a suit signs a document; a red mark on its head marks the moment it acts.">
+      <div class="hero-fg-top">
+        <div class="kicker"><span class="live-dot"></span><b>THE LAB</b> · WORKING TOOLS · 2026</div>
+        <hr class="hero-rule">
+        <h1 class="poster wipe">I build what I write about</h1>
+      </div>
+      <p class="prose hero-lede">A lawyer inside technology companies for more than two decades. I write about what AI does to legal work, and this is where I find out whether I'm right. The essays are at <a href="https://kenpriore.com">kenpriore.com</a>. The papers and the prototypes are here.</p>
+    </div>
 
     <!-- The peer-reviewed spine, promoted above the contents strip so it leads the
          page rather than closing section 03. Deliberately UNNUMBERED: the 01-04 arc
