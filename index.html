@@ -125,6 +125,9 @@ nav.top a[aria-current]{color:var(--ink);border-bottom-color:var(--c-blue);text-
 }
 /* narrow: drop the overlay, stack in normal flow — video, title, then lede */
 @media(max-width:820px){
+  .hero-stage{display:flex;flex-direction:column}
+  .hero-fg-top{display:contents}
+  .hero-fg-top .kicker{order:-1}
   .hero-fg-top,.hero-lede{position:static;width:auto;margin:0}
   .hero-fg-top{margin-top:20px}
   .hero-lede{margin-top:16px;font-size:16px}
@@ -137,8 +140,8 @@ nav.top a[aria-current]{color:var(--ink);border-bottom-color:var(--c-blue);text-
 .contents{border-top:2px solid var(--line-firm);border-bottom:2px solid var(--line-firm);margin-top:36px}
 /* the contents strip closes the hero, so section 01 opens straight off it:
    no bottom padding, no top padding, and no second rule 136px below the first */
-#maps{padding-top:0}
-#maps .group-head{border-top:0}
+#proof{padding-top:0}
+#proof .group-head{border-top:0}
 .contents ol{list-style:none;display:grid;grid-template-columns:repeat(4,1fr)}
 @media(max-width:860px){.contents ol{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.contents ol{grid-template-columns:1fr}}
@@ -332,7 +335,7 @@ footer li a:hover{color:var(--hue);text-decoration:none}
       </div>
     </a>
     <nav class="top">
-      <a href="#maps">Experiments</a>
+      <a href="#proof">Experiments</a>
       <a href="https://kenpriore.com">Writing</a>
       <a href="https://kenpriore.com/about/">About</a>
     </nav>
@@ -374,7 +377,7 @@ footer li a:hover{color:var(--hue);text-decoration:none}
           <p class="paper-sub">A Trust Primitive for Verifiable Autonomous Legal AI Agent Workflows</p>
         </div>
         <div class="paper-wrap">
-          <p class="paper-body">When an autonomous agent does legal work, nothing today certifies what it did, under what authority, or whether a human reviewed it. This proposes what that record has to be.</p>
+          <p class="paper-body">When an autonomous agent does legal work, nothing today certifies what it did, under what authority, or whether a human reviewed it. The paper specifies that record and maps it onto the EU AI Act and the NIST AI framework.</p>
           <ul class="paper-meta">
             <li><span class="k">Venue</span><span class="v">AI for Law Workshop, Seoul</span></li>
             <li><span class="k">Date</span><span class="v">July 2026</span></li>
@@ -385,7 +388,7 @@ footer li a:hover{color:var(--hue);text-decoration:none}
                  Law, first edition), and workshop papers are often non-archival and
                  absent from the main conference volume. Recheck v306 once published;
                  if the workshop is not in it, this line needs to change. -->
-            <li><span class="k">Extent</span><span class="v">10 pages · PMLR 306</span></li>
+            <li><span class="k">Length</span><span class="v">10 pages · PMLR 306</span></li>
           </ul>
           <div class="paper-foot"><a class="btn" href="papers/certificate-of-action.pdf">Read the paper <svg class="ic"><use href="#u-arrow"/></svg></a></div>
         </div>
@@ -398,11 +401,11 @@ footer li a:hover{color:var(--hue);text-decoration:none}
           <p class="paper-sub">How Legal AI Agents Can Prove They Were Loyal</p>
         </div>
         <div class="paper-wrap">
-          <p class="paper-body">Fiduciary duty doesn't disappear when an AI agent makes the decision. It just becomes harder to prove. Written for the Information Law Institute's workshop on fiduciary duties and AI.</p>
+          <p class="paper-body">Fiduciary duty doesn't disappear when an AI agent makes the decision. It just becomes harder to prove. The paper maps the four fiduciary duties onto the four layers of a sealed record, with tools that exist today.</p>
           <ul class="paper-meta">
             <li><span class="k">Venue</span><span class="v">Information Law Institute, New York</span></li>
             <li><span class="k">Date</span><span class="v">June 2026</span></li>
-            <li><span class="k">Extent</span><span class="v">14 pages · Discussion draft</span></li>
+            <li><span class="k">Length</span><span class="v">14 pages · Discussion draft</span></li>
           </ul>
           <div class="paper-foot"><a class="btn" href="papers/fiduciarys-footprint.pdf">Read the paper <svg class="ic"><use href="#u-arrow"/></svg></a></div>
         </div>
@@ -411,42 +414,36 @@ footer li a:hover{color:var(--hue);text-decoration:none}
 
     <div class="contents">
       <ol>
-        <li><a href="#maps"><span class="c-no num">01</span><div class="c-t">The maps</div><div class="c-d">Where AI is landing in legal work</div></a></li>
+        <li><a href="#proof"><span class="c-no num">01</span><div class="c-t">The proof lane</div><div class="c-d">Two papers, a walkthrough and a working prototype</div></a></li>
         <li><a href="#model"><span class="c-no num">02</span><div class="c-t">The operating model</div><div class="c-d">What an AI-run department looks like</div></a></li>
-        <li><a href="#proof"><span class="c-no num">03</span><div class="c-t">The proof lane</div><div class="c-d">How agent work gets proven</div></a></li>
+        <li><a href="#maps"><span class="c-no num">03</span><div class="c-t">The maps</div><div class="c-d">The gap, the moat, the money, the chain, the shift</div></a></li>
         <li><a href="#lab"><span class="c-no num">04</span><div class="c-t">Lab log in</div><div class="c-d">If you know, ya know</div></a></li>
       </ol>
     </div>
   </div>
 </section>
 
-<!-- ─── 01 · THE MAPS ─── -->
-<section class="group" id="maps">
+<!-- ─── 01 · THE PROOF LANE ─── -->
+<section class="group" id="proof">
   <div class="container">
     <div class="group-head">
       <div class="gh-meta">
         <span class="hue-tick"></span>
-        <div class="kicker"><b>01</b> — THE MAPS</div>
+        <div class="kicker"><b>01</b> · THE PROOF LANE</div>
       </div>
-      <h2>Where AI is actually landing in legal work</h2>
-      <p class="prose">AI hits legal work unevenly. These maps show where it lands first, what protects a company when production gets cheap, and where the money is going.</p>
+      <h2>Proving what happened is the job now</h2>
+      <p class="prose">I took one claim, that the record matters, through peer review, in front of law faculty, and into a prototype that seals what an agent did.</p>
     </div>
     <ul class="ledger num">
-      <li><span class="no">01</span><svg class="ic"><use href="#e-gap"/></svg>
-        <span class="nm"><a href="https://mindthegap.kenpriore.ai">Mind the Gap</a><p>AI hits in-house legal work unevenly. The judgment gap dwarfs the process gap.</p></span>
+      <li><span class="no">01</span><svg class="ic"><use href="#a-signoff"/></svg>
+        <span class="nm"><a href="https://fiduciary.kenpriore.ai">The Fiduciary-Native Product</a><p>I walk through what makes AI legal work defensible, and you hash the receipt in your own browser.</p></span>
         <span class="st"><span class="badge">Live</span></span></li>
-      <li><span class="no">02</span><svg class="ic"><use href="#b-gate"/></svg>
-        <span class="nm"><a href="https://mindthemoat.kenpriore.ai">Mind the Moat</a><p>Five durable moats of the post-production economy: trust, context, distribution, taste, liability.</p></span>
+      <li><span class="no">02</span><svg class="ic"><use href="#c-clause"/></svg>
+        <span class="nm"><a href="https://ai4law.kenpriore.ai">ai4law</a><p>Both papers, the ICML poster, and the sealing-pipeline animation live on one page.</p></span>
         <span class="st"><span class="badge">Live</span></span></li>
-      <li><span class="no">03</span><svg class="ic"><use href="#e-throughput"/></svg>
-        <span class="nm"><a href="https://mindthemoney.kenpriore.ai">Mind the Money</a><p>Where legal-tech funding is concentrating, and what the concentration says.</p></span>
-        <span class="st"><span class="badge">Live</span></span></li>
-      <li><span class="no">04</span><svg class="ic"><use href="#b-ledger"/></svg>
-        <span class="nm"><a href="https://mindthechain.kenpriore.ai">Mind the Chain</a><p>The research companion to the Certificate of Action: the record, not the model, gets audited.</p></span>
-        <span class="st"><span class="badge">Live</span></span></li>
-      <li><span class="no">05</span><svg class="ic"><use href="#b-relocate"/></svg>
-        <span class="nm"><a href="https://mindtheshift.kenpriore.ai">Mind the Shift</a><p>Software engineering moved from implementation to orchestration. Medicine did it decades ago. In-house legal is next.</p></span>
-        <span class="st"><span class="badge">Live</span></span></li>
+      <li><span class="no">03</span><svg class="ic"><use href="#b-attest"/></svg>
+        <span class="nm"><a href="https://proof-of-execution.replit.app/">Attest</a><p>The prototype seals what an agent did across a live pipeline, so you can prove no one tampered with it.</p></span>
+        <span class="st"><a class="badge badge--demo" href="https://youtu.be/YMpd1zGAksk?t=63" target="_blank" rel="noopener">Video</a><span class="badge">Live</span></span></li>
     </ul>
   </div>
 </section>
@@ -457,54 +454,59 @@ footer li a:hover{color:var(--hue);text-decoration:none}
     <div class="group-head">
       <div class="gh-meta">
         <span class="hue-tick"></span>
-        <div class="kicker"><b>02</b> — THE OPERATING MODEL</div>
+        <div class="kicker"><b>02</b> · THE OPERATING MODEL</div>
       </div>
       <h2>What a legal department that runs on AI looks like</h2>
     </div>
     <ul class="ledger num">
-      <li><span class="no">06</span><svg class="ic"><use href="#d-framework"/></svg>
-        <span class="nm"><a href="https://ainativelaw.kenpriore.ai">The Agreement Work, Rewired</a><p>The steps, three kinds of work, who runs each. Start here.</p></span>
+      <li><span class="no">04</span><svg class="ic"><use href="#d-framework"/></svg>
+        <span class="nm"><a href="https://ainativelaw.kenpriore.ai">The Agreement Work, Rewired</a><p>The model splits the agreement work into three kinds and names who runs each, and it's where to start.</p></span>
         <span class="st"><span class="badge">Live</span></span></li>
-      <li class="pending"><span class="no">07</span><svg class="ic"><use href="#d-blueprint"/></svg>
-        <span class="nm"><span class="t">What the Work Runs On</span><p>Eight kinds of knowledge, and the record each one needs.</p></span>
+      <li class="pending"><span class="no">05</span><svg class="ic"><use href="#d-blueprint"/></svg>
+        <span class="nm"><span class="t">What the Work Runs On</span><p>This part covers the knowledge the agreement work runs on and the record each kind needs.</p></span>
+        <span class="st"><span class="badge badge--muted">Drafting</span></span></li>
+      <li class="pending"><span class="no">06</span><svg class="ic"><use href="#d-harness"/></svg>
+        <span class="nm"><span class="t">What the Work Remembers</span><p>Memory is the subject: where it lives, how it reaches the machine, and the three personas the machine works as.</p></span>
+        <span class="st"><span class="badge badge--muted">Drafting</span></span></li>
+      <li class="pending"><span class="no">07</span><svg class="ic"><use href="#e-baseline"/></svg>
+        <span class="nm"><span class="t">What the Work Decides</span><p>Here I break a legal call into its steps and mark which ones a machine can learn.</p></span>
         <span class="st"><span class="badge badge--muted">Drafting</span></span></li>
       <li class="pending"><span class="no">08</span><svg class="ic"><use href="#d-harness"/></svg>
-        <span class="nm"><span class="t">What the Work Remembers</span><p>Where memory sits, how it gets in, who the machine works as.</p></span>
-        <span class="st"><span class="badge badge--muted">Drafting</span></span></li>
-      <li class="pending"><span class="no">09</span><svg class="ic"><use href="#e-baseline"/></svg>
-        <span class="nm"><span class="t">What the Work Decides</span><p>The parts of a call, which ones a machine learns, what the record shows.</p></span>
-        <span class="st"><span class="badge badge--muted">Drafting</span></span></li>
-      <li class="pending"><span class="no">10</span><svg class="ic"><use href="#d-harness"/></svg>
-        <span class="nm"><span class="t">Data, Context and Legal Harnesses</span><p>Where an agent's context comes from, and who is accountable for what is in it.</p></span>
+        <span class="nm"><span class="t">Data, Context and Legal Harnesses</span><p>It comes down to who assembles the context an agent runs on, and who answers for what's in it.</p></span>
         <span class="st"><span class="badge badge--muted">Researching</span></span></li>
-      <li class="pending"><span class="no">11</span><svg class="ic"><use href="#a-align"/></svg>
-        <span class="nm"><span class="t">Legal Alignment</span><p>What it means for an agent to act inside the authority it was given.</p></span>
+      <li class="pending"><span class="no">09</span><svg class="ic"><use href="#a-align"/></svg>
+        <span class="nm"><span class="t">Legal Alignment</span><p>An agent has to act inside the authority it was given, and someone has to be able to tell when it doesn't.</p></span>
         <span class="st"><span class="badge badge--muted">Researching</span></span></li>
     </ul>
   </div>
 </section>
 
-<!-- ─── 03 · THE PROOF LANE ─── -->
-<section class="group" id="proof" style="padding-top:0">
+<!-- ─── 03 · THE MAPS ─── -->
+<section class="group" id="maps" style="padding-top:0">
   <div class="container">
     <div class="group-head">
       <div class="gh-meta">
         <span class="hue-tick"></span>
-        <div class="kicker"><b>03</b> — THE PROOF LANE</div>
+        <div class="kicker"><b>03</b> · THE MAPS</div>
       </div>
-      <h2>Proving what happened is the job now</h2>
-      <p class="prose">It's easy to say the record matters. It's harder to get that through peer review, argue it in front of law faculty, and ship a prototype that seals what an agent did.</p>
+      <h2>Where AI lands first in legal work</h2>
     </div>
     <ul class="ledger num">
-      <li><span class="no">12</span><svg class="ic"><use href="#a-signoff"/></svg>
-        <span class="nm"><a href="https://fiduciary.kenpriore.ai">The Fiduciary-Native Product</a><p>Fast, accurate, cheap, and defensible. The interactive walkthrough of the fourth requirement.</p></span>
+      <li><span class="no">10</span><svg class="ic"><use href="#e-gap"/></svg>
+        <span class="nm"><a href="https://mindthegap.kenpriore.ai">Mind the Gap</a><p>I scored twelve in-house legal roles for AI exposure, and AI takes the process work while the judgment stays with the lawyer.</p></span>
         <span class="st"><span class="badge">Live</span></span></li>
-      <li><span class="no">13</span><svg class="ic"><use href="#c-clause"/></svg>
-        <span class="nm"><a href="https://ai4law.kenpriore.ai">ai4law</a><p>The research home: the Certificate of Action paper (ICML 2026), the poster, the Fiduciary's Footprint.</p></span>
+      <li><span class="no">11</span><svg class="ic"><use href="#b-gate"/></svg>
+        <span class="nm"><a href="https://mindthemoat.kenpriore.ai">Mind the Moat</a><p>Five things still protect a company once the drafting gets cheap: trust, context, distribution, taste, and liability.</p></span>
         <span class="st"><span class="badge">Live</span></span></li>
-      <li><span class="no">14</span><svg class="ic"><use href="#b-attest"/></svg>
-        <span class="nm"><a href="https://proof-of-execution.replit.app/">Attest</a><p>The working prototype. Tamper-evidence across a live agent pipeline, sealed as a Certificate of Action.</p></span>
-        <span class="st"><a class="badge badge--demo" href="https://youtu.be/YMpd1zGAksk?t=63" target="_blank" rel="noopener">Demo</a><span class="badge">Live</span></span></li>
+      <li><span class="no">12</span><svg class="ic"><use href="#e-throughput"/></svg>
+        <span class="nm"><a href="https://mindthemoney.kenpriore.ai">Mind the Money</a><p>This charts where legal-tech funding piled up through Q1 2026.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
+      <li><span class="no">13</span><svg class="ic"><use href="#b-ledger"/></svg>
+        <span class="nm"><a href="https://mindthechain.kenpriore.ai">Mind the Chain</a><p>You can change one step of an agent's record here and watch the whole chain break.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
+      <li><span class="no">14</span><svg class="ic"><use href="#b-relocate"/></svg>
+        <span class="nm"><a href="https://mindtheshift.kenpriore.ai">Mind the Shift</a><p>Software engineering moved from writing code to directing it, medicine crossed that line decades ago, and in-house legal is next.</p></span>
+        <span class="st"><span class="badge">Live</span></span></li>
     </ul>
   </div>
 </section>
@@ -515,7 +517,7 @@ footer li a:hover{color:var(--hue);text-decoration:none}
     <div class="group-head">
       <div class="gh-meta">
         <span class="hue-tick"></span>
-        <div class="kicker"><b>04</b> — LAB LOG IN</div>
+        <div class="kicker"><b>04</b> · LAB LOG IN</div>
       </div>
     </div>
     <div class="studio">
@@ -554,7 +556,7 @@ footer li a:hover{color:var(--hue);text-decoration:none}
   <div class="container">
     <div class="foot-grid">
       <div class="foot-col foot-col--read">
-        <div class="kicker">Read</div>
+        <div class="kicker">Read · kenpriore.com</div>
         <ul>
           <li><a href="https://kenpriore.com/tag/signals/">Signals</a></li>
           <li><a href="https://kenpriore.com/tag/reflections/">Reflections</a></li>
@@ -562,11 +564,11 @@ footer li a:hover{color:var(--hue);text-decoration:none}
         </ul>
       </div>
       <div class="foot-col foot-col--interactive">
-        <div class="kicker">Interactive</div>
+        <div class="kicker">Experiments</div>
         <ul>
-          <li><a href="#maps">The maps</a></li>
-          <li><a href="#model">The operating model</a></li>
           <li><a href="#proof">The proof lane</a></li>
+          <li><a href="#model">The operating model</a></li>
+          <li><a href="#maps">The maps</a></li>
         </ul>
       </div>
       <div class="foot-col foot-col--record">
