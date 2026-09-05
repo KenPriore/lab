@@ -222,6 +222,10 @@ section.group{padding:72px 0 56px}
 }
 @media(max-width:640px){
   .studio{min-height:340px}
+  /* mobile: object-fit:cover enlarges the figure so the desktop left:55.15% lands the
+     mark on the pointing hand. Anchor it to the right edge at the same height — the open
+     blue just past the fingertip (clears figure ink by >40px across 360-480px). */
+  .studio-actions{left:auto;right:20px}
 }
 .btn{display:inline-flex;align-items:center;gap:10px;border:2px solid var(--line-firm);background:var(--paper);color:var(--ink);
   font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:12px 20px;cursor:pointer;
