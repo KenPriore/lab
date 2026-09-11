@@ -173,7 +173,9 @@ section.group .group-head .kicker,section.group .group-head .kicker b{color:var(
 section.group .group-head .prose{border-color:var(--sec)}
 section.group .ledger .nm a:hover{color:var(--sec)}
 section.group--yellow .group-head .kicker,section.group--yellow .group-head .kicker b{color:var(--ink)}
-section.group--yellow .group-head h2{background:var(--yellow);color:var(--ink);padding:10px 16px 11px;border-radius:4px;justify-self:start}
+/* heading is plain ink text like the other sections; no yellow fill box (Ken 9/11).
+   Yellow stays the section's colour on the left rule, tick, number discs, and badges. */
+section.group--yellow .group-head h2{color:var(--ink)}
 section.group--yellow .ledger .nm a:hover{color:var(--ink)}
 /* kicker on its own full-width row; then the title (forced to one line) and the
    boxed intro sit side by side on the same row — title left, box right. The title
