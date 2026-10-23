@@ -484,6 +484,47 @@ footer li a:hover{color:var(--hue);text-decoration:none}
         <span class="nm"><a href="https://proof-of-execution.replit.app/">Attest</a><p>The prototype seals what an agent did across a live pipeline, so you can prove no one tampered with it.</p></span>
         <span class="st"><a class="badge badge--demo" href="https://youtu.be/YMpd1zGAksk?t=63" target="_blank" rel="noopener">Video</a><span class="badge">Live</span></span></li>
     </ul>
+
+    <!-- Papers: two presented (blue), two in submission (rose) (Ken 2026-10-23; rose not red per the one-red rule) -->
+    <style>
+      .papers-wrap{margin-top:34px;}
+      .papers-k{font-size:11px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:14px;}
+      .papercards{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+      .pcard{--sec:var(--blue); border:2px solid var(--sec); padding:20px; display:flex; flex-direction:column;}
+      .pcard.rose{--sec:var(--rose);}
+      .pcard .tags{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px;}
+      .pcard .vn{font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);}
+      .pcard h3{font-family:var(--slab); font-size:20px; font-weight:700; line-height:1.15; margin:0 0 8px;}
+      .pcard h3 a{color:inherit; text-decoration:none;}
+      .pcard h3 a:hover{color:var(--sec);}
+      .pcard p{font-size:14px; color:var(--ink-soft); margin:0;}
+      @media(max-width:700px){.papercards{grid-template-columns:1fr;}}
+    </style>
+    <div class="papers-wrap">
+      <div class="papers-k">Papers</div>
+      <div class="papercards">
+        <div class="pcard">
+          <div class="tags"><span class="badge badge--muted">Presented</span><span class="vn">NYU · 2026</span></div>
+          <h3><a href="https://ai4law.kenpriore.ai">The Fiduciary's Footprint</a></h3>
+          <p>The four fiduciary duties, loyalty, care, disclosure, and confidentiality, mapped onto four verifiable layers.</p>
+        </div>
+        <div class="pcard">
+          <div class="tags"><span class="badge badge--muted">Presented</span><span class="vn">ICML · 2026</span></div>
+          <h3><a href="https://ai4law.kenpriore.ai">Certificate of Action</a></h3>
+          <p>A trust primitive for verifiable autonomous legal AI workflows, presented at the ICML AI for Law workshop in Seoul.</p>
+        </div>
+        <div class="pcard rose">
+          <div class="tags"><span class="badge">In submission</span><span class="badge badge--muted">Draft</span></div>
+          <h3>Nowhere to Type It</h3>
+          <p>Why an agent can only negotiate safely when the terms it can move are bounded, with a fallback depth before a person steps in.</p>
+        </div>
+        <div class="pcard rose">
+          <div class="tags"><span class="badge">In submission</span><span class="badge badge--muted">Draft</span></div>
+          <h3>Whose Record Governs?</h3>
+          <p>When both sides use agents, each side's record covers its own and says nothing about the other's.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
